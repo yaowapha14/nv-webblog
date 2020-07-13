@@ -1,9 +1,13 @@
 let exprss = require('express')
 const app = exprss() 
 let bodyParser = require('body-parser')
+const {sequelize} = require('./models')
+const config = require('./config/config')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+
+require('./routes')(app)
 
 app.get('/status', function (req, res){
     res.send('Hello nodejs server')
@@ -23,8 +27,6 @@ app.get('/users', function (req, res) {
     res.send('เรียกข้อมูล ผู้ใช้งานทั้งหมด')
 })
 
-let port = 8081
-
 app.listen(port, function () {
     console.log('server running on ' + port)
 })
@@ -42,4 +44,11 @@ app.put('/user/:userId', function (req, res) {
 app.delete('/user/:userId', function (req, res) {
     res.send('ทำการลบผู้ใช้งาน: ' + req.params.userId + ' : ' +
     JSON.stringify(req.body))
+})
+
+let port = process.env.PORT || config.port
+sequelize.sync({force: false}).then(() => {
+    app.listen(port, function () {
+        console.log('Server running on ' + port)
+    })
 })
