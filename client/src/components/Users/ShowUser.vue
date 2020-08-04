@@ -9,7 +9,6 @@
 </template>
 <script>
 import UsersService from '@/services/UsersService'
-
 export default {
     data () {
         return {
