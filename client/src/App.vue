@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <back-header/>
+    <back-header />
     <router-view/>
-</div>
+  </div>
 </template>
 
 <script>

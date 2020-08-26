@@ -1,18 +1,19 @@
-import Api from'@/services/Api'
+import Api from '@/services/Api'
+
 export default {
-    index () {   
+    index () {
         return Api().get('blogs')
     },
     show (blogId) {
         return Api().get('blog/'+blogId)
     },
     post (blog) {
-        returnApi().post('blog', blog)
+        return Api().post('blog', blog)
     },
     put (blog) {
-        returnApi().put('blog/'+blog.id, blog)
+        return Api().put('blog/'+blog.id, blog)
     },
     delete (blog) {
-        returnApi().delete('blog/'+blog.id, blog)
+        return Api().delete('blog/'+blog.id, blog)
     },
 }
